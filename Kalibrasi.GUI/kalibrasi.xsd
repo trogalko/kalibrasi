@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="kalibrasi" targetNamespace="http://tempuri.org/kalibrasi.xsd" xmlns:mstns="http://tempuri.org/kalibrasi.xsd" xmlns="http://tempuri.org/kalibrasi.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="kalibrasi" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="kalibrasi" msprop:Generator_UserDSName="kalibrasi" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtListResult" msprop:Generator_UserTableName="dtListResult" msprop:Generator_RowDeletedName="dtListResultRowDeleted" msprop:Generator_TableClassName="dtListResultDataTable" msprop:Generator_RowChangedName="dtListResultRowChanged" msprop:Generator_RowClassName="dtListResultRow" msprop:Generator_RowChangingName="dtListResultRowChanging" msprop:Generator_RowEvArgName="dtListResultRowChangeEvent" msprop:Generator_RowEvHandlerName="dtListResultRowChangeEventHandler" msprop:Generator_TablePropName="dtListResult" msprop:Generator_TableVarName="tabledtListResult" msprop:Generator_RowDeletingName="dtListResultRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="c_IdAlat" msdata:Caption="ID Alat" msprop:Generator_UserColumnName="c_IdAlat" msprop:Generator_ColumnPropNameInRow="c_IdAlat" msprop:Generator_ColumnVarNameInTable="columnc_IdAlat" msprop:Generator_ColumnPropNameInTable="c_IdAlatColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="c_NamaAlat" msdata:Caption="Nama Alat" msprop:Generator_UserColumnName="c_NamaAlat" msprop:Generator_ColumnPropNameInRow="c_NamaAlat" msprop:Generator_ColumnVarNameInTable="columnc_NamaAlat" msprop:Generator_ColumnPropNameInTable="c_NamaAlatColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,10 @@
+C:\Documents and Settings\TRI_N\My Documents\Visual Studio 2008\Projects\Kalibrasi\Kalibrasi.Data\bin\Debug\Kalibrasi.Data.dll.config
+C:\Documents and Settings\TRI_N\My Documents\Visual Studio 2008\Projects\Kalibrasi\Kalibrasi.Data\bin\Debug\Kalibrasi.Data.dll
+C:\Documents and Settings\TRI_N\My Documents\Visual Studio 2008\Projects\Kalibrasi\Kalibrasi.Data\bin\Debug\Kalibrasi.Data.pdb
+C:\Documents and Settings\TRI_N\My Documents\Visual Studio 2008\Projects\Kalibrasi\Kalibrasi.Data\bin\Debug\SD.LLBLGen.Pro.DQE.Access.NET20.dll
+C:\Documents and Settings\TRI_N\My Documents\Visual Studio 2008\Projects\Kalibrasi\Kalibrasi.Data\bin\Debug\SD.LLBLGen.Pro.ORMSupportClasses.NET20.dll
+C:\Documents and Settings\TRI_N\My Documents\Visual Studio 2008\Projects\Kalibrasi\Kalibrasi.Data\bin\Debug\SD.LLBLGen.Pro.ORMSupportClasses.NET20.xml
+C:\Documents and Settings\TRI_N\My Documents\Visual Studio 2008\Projects\Kalibrasi\Kalibrasi.Data\bin\Debug\SD.LLBLGen.Pro.DQE.Access.NET20.xml
+C:\Documents and Settings\TRI_N\My Documents\Visual Studio 2008\Projects\Kalibrasi\Kalibrasi.Data\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\TRI_N\My Documents\Visual Studio 2008\Projects\Kalibrasi\Kalibrasi.Data\obj\Debug\Kalibrasi.Data.dll
+C:\Documents and Settings\TRI_N\My Documents\Visual Studio 2008\Projects\Kalibrasi\Kalibrasi.Data\obj\Debug\Kalibrasi.Data.pdb
