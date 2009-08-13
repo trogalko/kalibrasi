@@ -318,6 +318,7 @@
             this.cmdAdd.TabIndex = 27;
             this.cmdAdd.Text = "ADD NEW";
             this.cmdAdd.UseVisualStyleBackColor = true;
+            this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
             // 
             // cmdBottom
             // 

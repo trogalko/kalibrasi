@@ -15,6 +15,7 @@ namespace Kalibrasi.global_variable
         private static string _gcUSERID = "";
         private static string _gcHakAkses = "";
         private static string _gcPASSWORD = "";
+        private static string _gcSelectedValue = "";
         private static BindingSource _gbsALAT = null;
         private static DataTable _gdtALAT = null;
         private static MAlatCollection _gentMAlat = null;
@@ -35,6 +36,12 @@ namespace Kalibrasi.global_variable
         {
             get { return _gcHakAkses; }
             set { _gcHakAkses = value; }
+        }
+
+        public static string gcSELECTEDVALUE
+        {
+            get { return _gcSelectedValue; }
+            set { _gcSelectedValue = value; }
         }
 
         public static BindingSource gbsALAT

@@ -148,7 +148,8 @@ namespace Kalibrasi.form
  
             //MessageBox.Show(bsSearchList.Count.ToString());
             frmResultList frmResultList = new frmResultList();
-            frmResultList.ShowDialog();                      
+            frmResultList.ShowDialog(); 
+                     
         }
 
         public DataTable CollectionToDataTable<TEntity>(EntityCollectionBase<TEntity> collection, string TableName)
@@ -159,6 +160,11 @@ namespace Kalibrasi.form
             DataTable dt = new DataTable(TableName);
             collection.DefaultView.CreateProjection(propertyProjectors, dt);
             return dt;
+        }
+
+        private void cmdAdd_Click(object sender, EventArgs e)
+        {
+            Kalibrasi.global_variable.global.gdtALAT 
         }
     }
 }

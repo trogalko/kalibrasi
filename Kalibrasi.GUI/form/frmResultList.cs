@@ -29,5 +29,10 @@ namespace Kalibrasi.form
         {
             this.Close();  
         }
+
+        private void dgvResult_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
