@@ -148,7 +148,12 @@ namespace Kalibrasi.form
  
             //MessageBox.Show(bsSearchList.Count.ToString());
             frmResultList frmResultList = new frmResultList();
-            frmResultList.ShowDialog(); 
+            frmResultList.ShowDialog();
+            bsAlat.MoveFirst();
+            while (txtIdAlat.Text != Kalibrasi.global_variable.global.gcSELECTEDVALUE)
+            {
+                bsAlat.MoveNext();
+            }
                      
         }
 
@@ -164,7 +169,7 @@ namespace Kalibrasi.form
 
         private void cmdAdd_Click(object sender, EventArgs e)
         {
-            Kalibrasi.global_variable.global.gdtALAT 
+            MessageBox.Show(Kalibrasi.global_variable.global.gcSELECTEDVALUE);
         }
     }
 }

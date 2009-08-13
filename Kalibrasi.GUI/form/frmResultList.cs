@@ -32,7 +32,7 @@ namespace Kalibrasi.form
 
         private void dgvResult_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Kalibrasi.global_variable.global.gcSELECTEDVALUE = 
+            Kalibrasi.global_variable.global.gcSELECTEDVALUE = dgvResult.Rows[e.RowIndex].Cells[0].FormattedValue.ToString(); 
         }
     }
 }
