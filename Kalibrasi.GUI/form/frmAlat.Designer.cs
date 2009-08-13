@@ -78,7 +78,6 @@
             this.optAktif = new System.Windows.Forms.RadioButton();
             this.bsAlat = new System.Windows.Forms.BindingSource(this.components);
             this.mAlat = new Kalibrasi.Data.CollectionClasses.MAlatCollection();
-            this.bsSearchList = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -87,7 +86,6 @@
             this.bindingNavigator1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsAlat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSearchList)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -614,7 +612,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsAlat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSearchList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -667,9 +664,8 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;        
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private Kalibrasi.Data.CollectionClasses.MAlatCollection mAlat;
-        private System.Windows.Forms.BindingSource bsSearchList;
 
     }
 }

@@ -21,8 +21,8 @@ namespace Kalibrasi.form
         }
 
         private void frmResultList_Load(object sender, EventArgs e)
-        {            
-            dataGridView1.DataSource = Kalibrasi.global_variable.global.gbsALAT;     
+        {
+            dgvResult.DataSource = Kalibrasi.global_variable.global.gdtALAT;             
         }
 
         private void button1_Click_1(object sender, EventArgs e)

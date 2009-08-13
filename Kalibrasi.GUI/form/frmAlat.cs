@@ -53,10 +53,12 @@ namespace Kalibrasi.form
             cmbCari.Items.Add("By ID");
             cmbCari.Items.Add("By Nama");
 
+            //retrieve all Master Alat records
             mAlat.GetMulti(null);
-            dtAlat = CollectionToDataTable(mAlat, "dtAlat"); 
-            bsAlat.DataSource = dtAlat;
-            bsSearchList.DataSource = dtAlat;  
+            //copy all Master Alat ke variabel global
+            Kalibrasi.global_variable.global.gentMAlat = mAlat;             
+            //dtAlat = CollectionToDataTable(mAlat, "dtAlat"); 
+            bsAlat.DataSource = Kalibrasi.global_variable.global.gentMAlat;              
             bsAlat.MoveLast();  
             bindingNavigator1.BindingSource = bsAlat;             
         }
@@ -91,14 +93,62 @@ namespace Kalibrasi.form
 
         private void cmdCari_Click(object sender, EventArgs e)
         {
-            bsSearchList.Filter = "CIdAlat like '%" + txtIdAlat.Text + "%'";
-            Kalibrasi.global_variable.global.gbsALAT = bsSearchList;
-            Kalibrasi.global_variable.global.gdtALAT = (DataTable)bsSearchList.DataSource;               
-            bsAlat.DataSource = mAlat;  
-            MessageBox.Show(bsSearchList.Count.ToString());
+            DataTable dtAlat = new DataTable();
+            DataColumn dcIdAlat;
+            DataColumn dcNamaAlat;
+            DataRow dr;
+            DataRow drNamaAlat;
+
+            dcIdAlat = new DataColumn();
+            dcIdAlat.DataType = System.Type.GetType("System.String");
+            dcIdAlat.ColumnName = "Id_Alat";
+            dcIdAlat.Caption = "ID ALAT";
+            dcIdAlat.AutoIncrement = false;
+            dcIdAlat.ReadOnly = true;
+            dcIdAlat.Unique = false;
+            dcIdAlat.MaxLength = 20;
+
+            dtAlat.Columns.Add(dcIdAlat);
+
+            dcNamaAlat = new DataColumn();
+            dcNamaAlat.DataType = System.Type.GetType("System.String");
+            dcNamaAlat.ColumnName = "Nama_Alat";
+            dcNamaAlat.Caption = "NAMA ALAT";
+            dcNamaAlat.AutoIncrement = false;
+            dcNamaAlat.ReadOnly = true;
+            dcNamaAlat.Unique = false;
+            dcNamaAlat.MaxLength = 100;
+
+            dtAlat.Columns.Add(dcNamaAlat);             
+            
+ 
+            if (cmbCari.Text.Length != 0)
+            {
+                if (cmbCari.Text == "By ID")
+                {
+                    foreach (MAlatEntity MA in mAlat)
+                    {                         
+                        if (MA.CIdAlat.Contains(txtCari.Text))
+                        {                            
+                            dr = dtAlat.NewRow();
+                            dr["Id_Alat"] = MA.CIdAlat;
+                            dr["Nama_Alat"] = MA.CNamaAlat;
+                            dtAlat.Rows.Add(dr);                            
+                        }
+                    }
+                }
+            }
+            Kalibrasi.global_variable.global.gdtALAT = dtAlat;
+
+            //bsSearchList.Filter = "cIdAlat like '%" + txtIdAlat.Text + "%'";
+            //Kalibrasi.global_variable.global.gbsALAT = bsSearchList;
+            //Kalibrasi.global_variable.global.gdtALAT = (DataTable)bsSearchList.DataSource;  
+             
+            //bsAlat.DataSource = mAlat; 
+ 
+            //MessageBox.Show(bsSearchList.Count.ToString());
             frmResultList frmResultList = new frmResultList();
-            frmResultList.ShowDialog();  
-            //bsAlat.Filter ="CIdAlat like '%" + txtIdAlat.Text + "%'";  
+            frmResultList.ShowDialog();                      
         }
 
         public DataTable CollectionToDataTable<TEntity>(EntityCollectionBase<TEntity> collection, string TableName)

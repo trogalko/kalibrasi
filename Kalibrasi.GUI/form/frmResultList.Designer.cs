@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.dgvResult = new System.Windows.Forms.DataGridView();
+            this.cmdExit = new System.Windows.Forms.Button();
             this.kalibrasi1 = new Kalibrasi.kalibrasi();
+            this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kalibrasi1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,42 +49,50 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
+            this.splitContainer1.Panel1.Controls.Add(this.dgvResult);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.button1);
+            this.splitContainer1.Panel2.Controls.Add(this.label1);
+            this.splitContainer1.Panel2.Controls.Add(this.cmdExit);
             this.splitContainer1.Size = new System.Drawing.Size(592, 573);
-            this.splitContainer1.SplitterDistance = 517;
+            this.splitContainer1.SplitterDistance = 494;
             this.splitContainer1.TabIndex = 0;
             // 
-            // dataGridView1
+            // dgvResult
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(592, 517);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvResult.AllowUserToAddRows = false;
+            this.dgvResult.AllowUserToDeleteRows = false;
+            this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvResult.Location = new System.Drawing.Point(0, 0);
+            this.dgvResult.Name = "dgvResult";
+            this.dgvResult.Size = new System.Drawing.Size(592, 494);
+            this.dgvResult.TabIndex = 0;
             // 
-            // button1
+            // cmdExit
             // 
-            this.button1.Location = new System.Drawing.Point(245, 17);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.cmdExit.Location = new System.Drawing.Point(273, 40);
+            this.cmdExit.Name = "cmdExit";
+            this.cmdExit.Size = new System.Drawing.Size(75, 23);
+            this.cmdExit.TabIndex = 0;
+            this.cmdExit.Text = "EXIT";
+            this.cmdExit.UseVisualStyleBackColor = true;
+            this.cmdExit.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // kalibrasi1
             // 
             this.kalibrasi1.DataSetName = "kalibrasi";
             this.kalibrasi1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(114, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(371, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Please select the record that you want to pick and then click the EXIT button";
             // 
             // frmResultList
             // 
@@ -94,12 +103,13 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmResultList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmResultList";
+            this.Text = "Search Result List";
             this.Load += new System.EventHandler(this.frmResultList_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kalibrasi1)).EndInit();
             this.ResumeLayout(false);
 
@@ -108,9 +118,10 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button cmdExit;
         private kalibrasi kalibrasi1;
+        private System.Windows.Forms.DataGridView dgvResult;
+        private System.Windows.Forms.Label label1;
 
     }
 }

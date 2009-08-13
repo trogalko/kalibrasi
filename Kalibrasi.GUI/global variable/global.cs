@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Data; 
 using System.Text;
-using System.Windows.Forms;  
+using System.Windows.Forms;
+
+using SD.LLBLGen.Pro.ORMSupportClasses;
+using Kalibrasi.Data.EntityClasses;
+using Kalibrasi.Data.CollectionClasses;    
 
 namespace Kalibrasi.global_variable
 {
@@ -12,7 +16,8 @@ namespace Kalibrasi.global_variable
         private static string _gcHakAkses = "";
         private static string _gcPASSWORD = "";
         private static BindingSource _gbsALAT = null;
-        private static DataTable _gdtALAT = null; 
+        private static DataTable _gdtALAT = null;
+        private static MAlatCollection _gentMAlat = null;
 
         public static string gcUSERID
         {
@@ -42,6 +47,12 @@ namespace Kalibrasi.global_variable
         {
             get { return _gdtALAT; }
             set { _gdtALAT = value; }
+        }
+
+        public static MAlatCollection gentMAlat
+        {
+            get { return _gentMAlat; }
+            set { _gentMAlat = value; }
         }
     }
 }

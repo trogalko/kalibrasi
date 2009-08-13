@@ -54,12 +54,12 @@ namespace Kalibrasi.form
             frmStatusBar = new frmStatusBar();
             frmStatusBar.Show(); 
             frmStatusBar.CancelButtonClicked += new CancelButtonEventHandler(frmStatusBar_CancelButtonClicked);
-            loginWorker.RunWorkerAsync();              
+            loginWorker.RunWorkerAsync();                    
         }
 
         void frmStatusBar_CancelButtonClicked(object sender, CancelEventArgs e)
         {
-            loginWorker.CancelAsync();  
+            loginWorker.CancelAsync();              
         }
 
         private void loginWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -90,8 +90,7 @@ namespace Kalibrasi.form
             if (Kalibrasi.global_variable.global.gcPASSWORD == crypt.EncryptStringENC(txtPassword.Text))
             {
                 this.Close();                 
-            }
-
+            }       
             
         }                 
     }
