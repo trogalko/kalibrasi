@@ -50,6 +50,18 @@ namespace Kalibrasi
             form.frmLogin frmLogin = new Kalibrasi.form.frmLogin();
             frmLogin.ShowDialog();
             toolStripLabel1.Text = " USER NAME : " + Kalibrasi.global_variable.global.gcUSERID;
+        }
+
+        private void mnuDepartemen_Click(object sender, EventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                frm.Close();
+            }
+            form.frmDepartemen frmDepartemen = new Kalibrasi.form.frmDepartemen();
+            frmDepartemen.MdiParent = this;
+            frmDepartemen.Dock = DockStyle.Fill;
+            frmDepartemen.Show();
         }        
     }
 }

@@ -132,6 +132,7 @@
             this.mnuDepartemen.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.mnuDepartemen.Size = new System.Drawing.Size(163, 22);
             this.mnuDepartemen.Text = "Departemen";
+            this.mnuDepartemen.Click += new System.EventHandler(this.mnuDepartemen_Click);
             // 
             // mnuLokasi
             // 
@@ -159,7 +160,7 @@
             // 
             this.mnuJadwal.Name = "mnuJadwal";
             this.mnuJadwal.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.mnuJadwal.Size = new System.Drawing.Size(152, 22);
+            this.mnuJadwal.Size = new System.Drawing.Size(137, 22);
             this.mnuJadwal.Text = "Jadwal";
             // 
             // mnuLaporan

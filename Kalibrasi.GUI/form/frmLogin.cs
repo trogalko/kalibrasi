@@ -14,6 +14,7 @@ namespace Kalibrasi.form
 {
     public partial class frmLogin : Form
     {
+        public string lcUserId = "";
         frmStatusBar frmStatusBar = new frmStatusBar();
  
         public frmLogin()
@@ -35,22 +36,9 @@ namespace Kalibrasi.form
             crypt.KeyLength = 128;
             crypt.SecretKey = crypt.GenerateSecretKey(txtUser.Text);
             crypt.EncodingMode = "base64";
-            Kalibrasi.global_variable.global.gcUSERID = txtUser.Text;     
-            //try
-            //{
-            //    MUserEntity MUser = new MUserEntity(txtUser.Text);
-            //    if (MUser.CPassword == crypt.EncryptStringENC(txtPassword.Text))
-            //    {
-            //        Kalibrasi.global_variable.global.gcUSERID = MUser.CUserId;
-            //        Kalibrasi.global_variable.global.gcHAKAKSES = MUser.CIdHakAkses;  
-            //        this.Close();
-            //    }                
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);   
-            //}
-
+            lcUserId = Kalibrasi.global_variable.global.gcUSERID;
+            Kalibrasi.global_variable.global.gcUSERID = txtUser.Text;  
+            
             frmStatusBar = new frmStatusBar();
             frmStatusBar.Show(); 
             frmStatusBar.CancelButtonClicked += new CancelButtonEventHandler(frmStatusBar_CancelButtonClicked);
@@ -59,7 +47,8 @@ namespace Kalibrasi.form
 
         void frmStatusBar_CancelButtonClicked(object sender, CancelEventArgs e)
         {
-            loginWorker.CancelAsync();              
+            loginWorker.CancelAsync();
+            Kalibrasi.global_variable.global.gcUSERID = lcUserId;
         }
 
         private void loginWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -89,8 +78,12 @@ namespace Kalibrasi.form
 
             if (Kalibrasi.global_variable.global.gcPASSWORD == crypt.EncryptStringENC(txtPassword.Text))
             {
-                this.Close();                 
-            }       
+                this.Close();                
+            }
+            else
+            {
+                Kalibrasi.global_variable.global.gcUSERID = lcUserId;
+            }
             
         }                 
     }

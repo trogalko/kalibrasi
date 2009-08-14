@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAlat));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label11 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -76,12 +75,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.optNonAktif = new System.Windows.Forms.RadioButton();
             this.optAktif = new System.Windows.Forms.RadioButton();
-            this.bsAlat = new System.Windows.Forms.BindingSource(this.components);
             this.mAlat = new Kalibrasi.Data.CollectionClasses.MAlatCollection();
+            this.bsAlat = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -101,7 +99,6 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.label11);
-            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             // 
             // splitContainer1.Panel2
             // 
@@ -153,19 +150,11 @@
             this.label11.TabIndex = 1;
             this.label11.Text = "FORM MASTER ALAT";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Kalibrasi.Properties.Resources.Logo_Novell;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 38);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(138, 49);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // bindingNavigator1
             // 
             this.bindingNavigator1.AddNewItem = null;
             this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
+            this.bindingNavigator1.CountItemFormat = "dari {0}";
             this.bindingNavigator1.DeleteItem = null;
             this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -192,8 +181,8 @@
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(44, 22);
+            this.bindingNavigatorCountItem.Text = "dari {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
             // bindingNavigatorMoveFirstItem
@@ -282,6 +271,7 @@
             this.cmdConfirm.TabIndex = 31;
             this.cmdConfirm.Text = "CONFIRM";
             this.cmdConfirm.UseVisualStyleBackColor = true;
+            this.cmdConfirm.Click += new System.EventHandler(this.cmdConfirm_Click);
             // 
             // cmdEdit
             // 
@@ -291,24 +281,29 @@
             this.cmdEdit.TabIndex = 30;
             this.cmdEdit.Text = "EDIT";
             this.cmdEdit.UseVisualStyleBackColor = true;
+            this.cmdEdit.Click += new System.EventHandler(this.cmdEdit_Click);
             // 
             // cmdCancel
             // 
+            this.cmdCancel.Enabled = false;
             this.cmdCancel.Location = new System.Drawing.Point(297, 356);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 29;
             this.cmdCancel.Text = "CANCEL";
             this.cmdCancel.UseVisualStyleBackColor = true;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // cmdSave
             // 
+            this.cmdSave.Enabled = false;
             this.cmdSave.Location = new System.Drawing.Point(216, 356);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(75, 23);
             this.cmdSave.TabIndex = 28;
             this.cmdSave.Text = "SAVE";
             this.cmdSave.UseVisualStyleBackColor = true;
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
             // cmdAdd
             // 
@@ -373,6 +368,7 @@
             // 
             this.chkExternal.AutoSize = true;
             this.chkExternal.Enabled = false;
+            this.chkExternal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkExternal.Location = new System.Drawing.Point(205, 172);
             this.chkExternal.Name = "chkExternal";
             this.chkExternal.Size = new System.Drawing.Size(64, 17);
@@ -384,6 +380,7 @@
             // 
             this.chkInternal.AutoSize = true;
             this.chkInternal.Enabled = false;
+            this.chkInternal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkInternal.Location = new System.Drawing.Point(138, 172);
             this.chkInternal.Name = "chkInternal";
             this.chkInternal.Size = new System.Drawing.Size(61, 17);
@@ -402,9 +399,10 @@
             // 
             // txtIntEks
             // 
+            this.txtIntEks.Enabled = false;
+            this.txtIntEks.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIntEks.Location = new System.Drawing.Point(418, 143);
             this.txtIntEks.Name = "txtIntEks";
-            this.txtIntEks.ReadOnly = true;
             this.txtIntEks.Size = new System.Drawing.Size(109, 20);
             this.txtIntEks.TabIndex = 15;
             // 
@@ -428,33 +426,37 @@
             // 
             // txtInterval
             // 
+            this.txtInterval.Enabled = false;
+            this.txtInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInterval.Location = new System.Drawing.Point(135, 143);
             this.txtInterval.Name = "txtInterval";
-            this.txtInterval.ReadOnly = true;
             this.txtInterval.Size = new System.Drawing.Size(109, 20);
             this.txtInterval.TabIndex = 12;
             // 
             // txtBatasToleransi
             // 
+            this.txtBatasToleransi.Enabled = false;
+            this.txtBatasToleransi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBatasToleransi.Location = new System.Drawing.Point(135, 117);
             this.txtBatasToleransi.Name = "txtBatasToleransi";
-            this.txtBatasToleransi.ReadOnly = true;
             this.txtBatasToleransi.Size = new System.Drawing.Size(507, 20);
             this.txtBatasToleransi.TabIndex = 11;
             // 
             // txtNamaAlat
             // 
+            this.txtNamaAlat.Enabled = false;
+            this.txtNamaAlat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNamaAlat.Location = new System.Drawing.Point(135, 91);
             this.txtNamaAlat.Name = "txtNamaAlat";
-            this.txtNamaAlat.ReadOnly = true;
             this.txtNamaAlat.Size = new System.Drawing.Size(507, 20);
             this.txtNamaAlat.TabIndex = 10;
             // 
             // txtIdAlat
             // 
+            this.txtIdAlat.Enabled = false;
+            this.txtIdAlat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdAlat.Location = new System.Drawing.Point(135, 65);
             this.txtIdAlat.Name = "txtIdAlat";
-            this.txtIdAlat.ReadOnly = true;
             this.txtIdAlat.Size = new System.Drawing.Size(206, 20);
             this.txtIdAlat.TabIndex = 9;
             // 
@@ -550,6 +552,8 @@
             // optNonAktif
             // 
             this.optNonAktif.AutoSize = true;
+            this.optNonAktif.Enabled = false;
+            this.optNonAktif.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.optNonAktif.Location = new System.Drawing.Point(74, 8);
             this.optNonAktif.Name = "optNonAktif";
             this.optNonAktif.Size = new System.Drawing.Size(72, 17);
@@ -561,6 +565,8 @@
             // optAktif
             // 
             this.optAktif.AutoSize = true;
+            this.optAktif.Enabled = false;
+            this.optAktif.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.optAktif.Location = new System.Drawing.Point(6, 8);
             this.optAktif.Name = "optAktif";
             this.optAktif.Size = new System.Drawing.Size(49, 17);
@@ -568,10 +574,6 @@
             this.optAktif.TabStop = true;
             this.optAktif.Text = "Aktiv";
             this.optAktif.UseVisualStyleBackColor = true;
-            // 
-            // bsAlat
-            // 
-            this.bsAlat.AllowNew = true;
             // 
             // mAlat
             // 
@@ -590,6 +592,10 @@
             this.mAlat.SuppressClearInGetMulti = false;
             this.mAlat.Transaction = null;
             // 
+            // bsAlat
+            // 
+            this.bsAlat.AllowNew = true;
+            // 
             // frmAlat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -606,7 +612,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
@@ -653,7 +658,6 @@
         private System.Windows.Forms.Button cmdNext;
         private System.Windows.Forms.Button cmdPrevious;
         private System.Windows.Forms.Button cmdTop;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.BindingSource bsAlat;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;

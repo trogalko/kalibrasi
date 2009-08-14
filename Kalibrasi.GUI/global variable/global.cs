@@ -12,13 +12,17 @@ namespace Kalibrasi.global_variable
 {
     class global
     {
+        //Global Variable
         private static string _gcUSERID = "";
         private static string _gcHakAkses = "";
         private static string _gcPASSWORD = "";
         private static string _gcSelectedValue = "";
         private static BindingSource _gbsALAT = null;
+        private static BindingSource _gbsDEPARTEMEN = null;
         private static DataTable _gdtALAT = null;
+        private static DataTable _gdtDEPARTEMEN = null;
         private static MAlatCollection _gentMAlat = null;
+        private static MDepartementCollection _gentDEPARTEMEN = null;
 
         public static string gcUSERID
         {
@@ -49,6 +53,11 @@ namespace Kalibrasi.global_variable
             get { return _gbsALAT; }
             set { _gbsALAT = value; }
         }
+        public static BindingSource gbsDEPARTEMEN
+        {
+            get { return _gbsDEPARTEMEN; }
+            set { _gbsDEPARTEMEN = value; }
+        }
 
         public static DataTable gdtALAT
         {
@@ -56,10 +65,31 @@ namespace Kalibrasi.global_variable
             set { _gdtALAT = value; }
         }
 
+        public static DataTable gdtDEPARTEMEN
+        {
+            get { return _gdtDEPARTEMEN; }
+            set { _gdtDEPARTEMEN = value; }
+        }
+
         public static MAlatCollection gentMAlat
         {
             get { return _gentMAlat; }
             set { _gentMAlat = value; }
         }
+
+        public static MDepartementCollection gentDEPARTEMEN
+        {
+            get { return _gentDEPARTEMEN; }
+            set { _gentDEPARTEMEN = value; }
+        }
+
+        //Method
+        //public void EnableControl(List<Control> listCtl)
+        //{            
+        //    foreach (Control ctl in listCtl)
+        //    {
+        //        ctl.Enabled = true;  
+        //    }
+        //}
     }
 }

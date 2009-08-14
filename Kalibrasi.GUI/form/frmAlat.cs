@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Threading; 
 using System.Windows.Forms;
 
 using Kalibrasi.Data;
@@ -21,7 +22,7 @@ namespace Kalibrasi.form
     public partial class frmAlat : Form
     {
         public DataTable dtAlat;
-
+        public bool lAdd = false;
         public frmAlat()
         {
             InitializeComponent();
@@ -53,11 +54,8 @@ namespace Kalibrasi.form
             cmbCari.Items.Add("By ID");
             cmbCari.Items.Add("By Nama");
 
-            //retrieve all Master Alat records
-            mAlat.GetMulti(null);
-            //copy all Master Alat ke variabel global
-            Kalibrasi.global_variable.global.gentMAlat = mAlat;             
-            //dtAlat = CollectionToDataTable(mAlat, "dtAlat"); 
+            mAlat.GetMulti(null);            
+            Kalibrasi.global_variable.global.gentMAlat = mAlat;       
             bsAlat.DataSource = Kalibrasi.global_variable.global.gentMAlat;              
             bsAlat.MoveLast();  
             bindingNavigator1.BindingSource = bsAlat;             
@@ -96,9 +94,8 @@ namespace Kalibrasi.form
             DataTable dtAlat = new DataTable();
             DataColumn dcIdAlat;
             DataColumn dcNamaAlat;
-            DataRow dr;
-            DataRow drNamaAlat;
-
+            DataRow dr;            
+            
             dcIdAlat = new DataColumn();
             dcIdAlat.DataType = System.Type.GetType("System.String");
             dcIdAlat.ColumnName = "Id_Alat";
@@ -119,42 +116,62 @@ namespace Kalibrasi.form
             dcNamaAlat.Unique = false;
             dcNamaAlat.MaxLength = 100;
 
-            dtAlat.Columns.Add(dcNamaAlat);             
-            
- 
+            dtAlat.Columns.Add(dcNamaAlat);
+
+
             if (cmbCari.Text.Length != 0)
             {
                 if (cmbCari.Text == "By ID")
                 {
                     foreach (MAlatEntity MA in mAlat)
-                    {                         
+                    {
                         if (MA.CIdAlat.Contains(txtCari.Text))
-                        {                            
+                        {
                             dr = dtAlat.NewRow();
                             dr["Id_Alat"] = MA.CIdAlat;
                             dr["Nama_Alat"] = MA.CNamaAlat;
-                            dtAlat.Rows.Add(dr);                            
+                            dtAlat.Rows.Add(dr);
                         }
                     }
                 }
-            }
-            Kalibrasi.global_variable.global.gdtALAT = dtAlat;
 
-            //bsSearchList.Filter = "cIdAlat like '%" + txtIdAlat.Text + "%'";
-            //Kalibrasi.global_variable.global.gbsALAT = bsSearchList;
-            //Kalibrasi.global_variable.global.gdtALAT = (DataTable)bsSearchList.DataSource;  
-             
-            //bsAlat.DataSource = mAlat; 
- 
-            //MessageBox.Show(bsSearchList.Count.ToString());
+                if (cmbCari.Text == "By Nama")
+                {
+                    foreach (MAlatEntity MA in mAlat)
+                    {
+                        if (MA.CNamaAlat.Contains(txtCari.Text))
+                        {
+                            dr = dtAlat.NewRow();
+                            dr["Id_Alat"] = MA.CIdAlat;
+                            dr["Nama_Alat"] = MA.CNamaAlat;
+                            dtAlat.Rows.Add(dr);
+                        }
+                    }
+                }
+                if (cmbCari.Text == "")
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+            if (dtAlat.Rows.Count > 0)
+            {
+                Kalibrasi.global_variable.global.gdtALAT = dtAlat;
+            }
+            else
+            {
+                return;
+            }            
             frmResultList frmResultList = new frmResultList();
             frmResultList.ShowDialog();
             bsAlat.MoveFirst();
             while (txtIdAlat.Text != Kalibrasi.global_variable.global.gcSELECTEDVALUE)
             {
                 bsAlat.MoveNext();
-            }
-                     
+            }                     
         }
 
         public DataTable CollectionToDataTable<TEntity>(EntityCollectionBase<TEntity> collection, string TableName)
@@ -169,7 +186,199 @@ namespace Kalibrasi.form
 
         private void cmdAdd_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Kalibrasi.global_variable.global.gcSELECTEDVALUE);
+            cmdAdd.Enabled = false;
+            cmdEdit.Enabled = false;
+            cmdSave.Enabled = true;
+            cmdCancel.Enabled = true;
+
+            bsAlat.SuspendBinding();
+            emptyText();
+            enableText();
+
+            lAdd = true;
+        }        
+
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
+            cmdAdd.Enabled = true;
+            cmdEdit.Enabled = true;
+            cmdSave.Enabled = false;
+            cmdCancel.Enabled = false;
+
+            emptyText();
+            bsAlat.MoveFirst();
+            bsAlat.ResumeBinding();                        
+            disableText();
+
+            lAdd = false;
+        }
+
+        private void cmdSave_Click(object sender, EventArgs e)
+        {
+            if (lAdd)
+            {
+                foreach (MAlatEntity m in mAlat)
+                {
+                    if (m.CIdAlat == txtIdAlat.Text)
+                    {
+                        MessageBox.Show("Record already exist");
+                        return;
+                    }
+                }
+            }
+
+            if (txtBatasToleransi.Text == "" || txtIdAlat.Text == "" || txtIntEks.Text == "" || txtInterval.Text == "" || txtNamaAlat.Text == "" || (chkExternal.Checked == false & chkInternal.Checked == false)||(optAktif.Checked ==false & optNonAktif.Checked ==false))
+            {
+                MessageBox.Show("Harap isi semua isian");
+                return; 
+            }
+
+            if (lAdd)
+            {
+                try
+                {
+                    cmdAdd.Enabled = true;
+                    cmdEdit.Enabled = true;
+                    cmdSave.Enabled = false;
+                    cmdCancel.Enabled = false;
+
+                    MAlatEntity MAlatEnt = new MAlatEntity();
+                    MAlatEnt.CIdAlat = txtIdAlat.Text;
+                    MAlatEnt.CNamaAlat = txtNamaAlat.Text;
+                    MAlatEnt.CBatasToleransi = txtBatasToleransi.Text;
+                    MAlatEnt.CUserId = global_variable.global.gcUSERID;
+                    MAlatEnt.NInterval = Convert.ToInt16(txtInterval.Text);
+                    MAlatEnt.NIntervalEks = Convert.ToInt16(txtIntEks.Text);
+                    MAlatEnt.LJkInternal = chkInternal.Checked;
+                    MAlatEnt.LJkEksternal = chkExternal.Checked;
+                    MAlatEnt.LStatusAlat = optAktif.Checked;
+                    MAlatEnt.DEntry = DateTime.Now;
+
+                    MAlatEnt.Save();
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+            }
+            else
+            {
+                try
+                {
+                    cmdAdd.Enabled = true;
+                    cmdEdit.Enabled = true;
+                    cmdSave.Enabled = false;
+                    cmdCancel.Enabled = false;
+
+                    MAlatEntity MAlatEnt = new MAlatEntity(txtIdAlat.Text);                    
+                    MAlatEnt.CNamaAlat = txtNamaAlat.Text;
+                    MAlatEnt.CBatasToleransi = txtBatasToleransi.Text;
+                    MAlatEnt.CUserId = global_variable.global.gcUSERID;
+                    MAlatEnt.NInterval = Convert.ToInt16(txtInterval.Text);
+                    MAlatEnt.NIntervalEks = Convert.ToInt16(txtIntEks.Text);
+                    MAlatEnt.LJkInternal = chkInternal.Checked;
+                    MAlatEnt.LJkEksternal = chkExternal.Checked;
+                    MAlatEnt.LStatusAlat = optAktif.Checked;
+                    MAlatEnt.DEntry = DateTime.Now;
+
+                    MAlatEnt.Save();
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+            }
+
+            mAlat.GetMulti(null);
+            Kalibrasi.global_variable.global.gentMAlat = mAlat;            
+            bsAlat.ResumeBinding();
+            bsAlat.MoveLast();
+            disableText();
+
+            lAdd = false;
+        }
+
+        private void cmdConfirm_Click(object sender, EventArgs e)
+        {
+            MAlatEntity m = new MAlatEntity(txtIdAlat.Text);
+            if (Kalibrasi.global_variable.global.gcHAKAKSES == "KAL03") 
+            {
+                MessageBox.Show("Anda tidak berhak confirm");
+                return;
+            }
+            if (m.DConfirm == null)
+            {
+                m.DConfirm = DateTime.Now.Date;
+                m.CConfirm = DateTime.Now.ToLongTimeString();
+                m.Save();
+            }
+            else
+            {
+                MessageBox.Show("Record ini sudah diconfirm");
+                return;
+            }
+        }
+
+        private void cmdEdit_Click(object sender, EventArgs e)
+        {
+            lAdd = false;
+            MAlatEntity m = new MAlatEntity(txtIdAlat.Text);
+            if (m.DConfirm != null)
+            {
+                MessageBox.Show("Record ini sudah diconfirm, tidak bisa diedit");
+                return;
+            }
+
+            cmdAdd.Enabled = false;
+            cmdEdit.Enabled = false;
+            cmdSave.Enabled = true;
+            cmdCancel.Enabled = true;
+
+            enableText();
+            txtIdAlat.Enabled = false;
+        }
+
+        private void enableText()
+        {
+            txtBatasToleransi.Enabled = true;
+            txtIdAlat.Enabled = true;
+            txtIntEks.Enabled = true;
+            txtInterval.Enabled = true;
+            txtNamaAlat.Enabled = true;
+            chkExternal.Enabled = true;
+            chkInternal.Enabled = true;
+            optAktif.Enabled = true;
+            optNonAktif.Enabled = true;
+        }
+
+        private void disableText()
+        {
+            txtBatasToleransi.Enabled = false;
+            txtIdAlat.Enabled = false;
+            txtIntEks.Enabled = false;
+            txtInterval.Enabled = false;
+            txtNamaAlat.Enabled = false;
+            chkExternal.Enabled = false;
+            chkInternal.Enabled = false;
+            optAktif.Enabled = false;
+            optNonAktif.Enabled = false;
+        }
+
+        private void emptyText()
+        {
+            txtBatasToleransi.Text = "";
+            txtIdAlat.Text = "";
+            txtIntEks.Text = "";
+            txtInterval.Text = "";
+            txtNamaAlat.Text = "";
+            chkExternal.Checked = false;
+            chkInternal.Checked = false;
+            optAktif.Checked = false;
+            optNonAktif.Checked = false;
         }
     }
 }
