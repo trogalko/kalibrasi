@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -54,6 +55,7 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -193,6 +195,7 @@
             this.mnuDaftarInduk.ShortcutKeys = System.Windows.Forms.Keys.F8;
             this.mnuDaftarInduk.Size = new System.Drawing.Size(227, 22);
             this.mnuDaftarInduk.Text = "Daftar Induk";
+            this.mnuDaftarInduk.Click += new System.EventHandler(this.mnuDaftarInduk_Click);
             // 
             // mnuUtility
             // 
@@ -264,6 +267,12 @@
             this.toolStripLabel2.Size = new System.Drawing.Size(237, 22);
             this.toolStripLabel2.Text = "PT. NOVELL PHARMACEUTICAL LABORATORIES";
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // mdiKalibrasi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -315,6 +324,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.Timer timer1;
 
     }
 }

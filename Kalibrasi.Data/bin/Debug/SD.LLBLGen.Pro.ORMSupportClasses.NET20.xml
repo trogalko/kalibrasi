@@ -2811,6 +2811,16 @@
             <param name="entityName">Entity name for entity type which fields the persistence information should be retrieved for</param>
             <returns>the requested persistence information</returns>
         </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.DataAccessAdapterBase.PerformExecuteSingleRowRetrievalQuery(SD.LLBLGen.Pro.ORMSupportClasses.IRetrievalQuery,System.Data.CommandBehavior)">
+            <summary>
+            Performs the execute single row retrieval query action. This method simply calls Execute on the queryToExecute passed in. 
+            </summary>
+            <param name="queryToExecute">The query to execute.</param>
+            <param name="behavior">The commandbehavior to pass to Execute.</param>
+            <returns>live datareader created by the execute method</returns>
+            <remarks>Use this method to pass a different command behavior to queryToExecute.Execute(), which is necessary for ASE sybase for example, as the 
+            Sybase ASE provider has a critical bug in some versions where SingleRow doesn't work but SingleResult will</remarks>
+        </member>
         <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.DataAccessAdapterBase.CreateNewPhysicalConnection(System.String)">
             <summary>
             Creates a new physical connection object.
@@ -6814,6 +6824,14 @@
             <param name="message">The message of the exception</param>
             <param name="entityValidated">the entity object validated. Offered as object to share exception objects between adapter/selfservicing.</param>
         </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.ORMEntityValidationException.#ctor(System.String,SD.LLBLGen.Pro.ORMSupportClasses.IEntityCore,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SD.LLBLGen.Pro.ORMSupportClasses.ORMEntityValidationException"/> class.
+            </summary>
+            <param name="message">The message of the exception</param>
+            <param name="entityValidated">the entity object validated. Offered as object to share exception objects between adapter/selfservicing.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
         <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.ORMEntityValidationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Constructor for deserialization as the base class already implements ISerializable.
@@ -7210,6 +7228,131 @@
             <summary>
             Gets or sets the target entity of which the fields were about to be set. This property is only set in scenario's with the LLBLGenProDataSource(2) 
             controls.
+            </summary>
+        </member>
+        <member name="T:SD.LLBLGen.Pro.ORMSupportClasses.PredicateFinder">
+            <summary>
+            Class which crawls over a predicateexpression and finds all predicates of the given type. Doesn't crawl into recursion of setpredicates. 
+            </summary>
+        </member>
+        <member name="T:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser">
+            <summary>
+            Class which is used to traverse over an llblgen pro object, like a derivedtable, predicate expression etc. and access all inner objects, including
+            fields.
+            </summary>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser"/> class.
+            </summary>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(System.Object)">
+            <summary>
+            Traverses the specified object
+            </summary>
+            <param name="objectToTraverse">The object to traverse.</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.DerivedTableDefinition)">
+            <summary>
+            Traverses the specified derived table
+            </summary>
+            <param name="objectToTraverse">The object to traverse.</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFieldCore)">
+            <summary>
+            Traverses the specified field and related objects.
+            </summary>
+            <param name="field">The field.</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IPredicate)">
+            <summary>
+            Traverses the specified predicate and enclosed objects.
+            </summary>
+            <param name="objectToTraverse">The object to traverse.</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.TraversePredicate(SD.LLBLGen.Pro.ORMSupportClasses.IPredicate)">
+            <summary>
+            Traverses the predicate specified.
+            </summary>
+            <param name="objectToTraverse">The object to traverse.</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.TraversePredicateField(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFieldCore,System.String)">
+            <summary>
+            Traverses the predicate field.
+            </summary>
+            <param name="field">The field as found in the predicate.</param>
+            <param name="objectAlias">The object alias set in the predicate for the field .</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IRelationCollection)">
+            <summary>
+            Traverses the specified relationcollection and the relations in it.
+            </summary>
+            <param name="objectToTraverse">The object to traverse.</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IExpression)">
+            <summary>
+            Traverses the specified expression
+            </summary>
+            <param name="objectToTraverse">The object to traverse.</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.TraverseExpressionOperand(SD.LLBLGen.Pro.ORMSupportClasses.IExpressionElement)">
+            <summary>
+            Traverses the specified expression operand.
+            </summary>
+            <param name="operand">The operand to traverse.</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IScalarQueryExpression)">
+            <summary>
+            Traverses the specified scalar query expression and contained objects.
+            </summary>
+            <param name="objectToTraverse">The object to traverse.</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IDbFunctionCall)">
+            <summary>
+            Traverses the specified dbfunction call and contained objects.
+            </summary>
+            <param name="objectToTraverse">The object to traverse.</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression)">
+            <summary>
+            Traverses the specified sortexpression and contained objects.
+            </summary>
+            <param name="objectToTraverse">The object to traverse.</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection)">
+            <summary>
+            Traverses the specified groupby collection and contained objects.
+            </summary>
+            <param name="objectToTraverse">The object to traverse.</param>
+        </member>
+        <member name="P:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.TraverseSetPredicateInnerSetElements">
+            <summary>
+            Gets / sets the flag to traverse the inner elements of a FieldCompareSetPredicate. (default is true). Set to false if you use the findings of this
+            crawler to adjust an outer query, as the inner elements of a fieldcompareset are a different scope.
+            </summary>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.PredicateFinder.#ctor(SD.LLBLGen.Pro.ORMSupportClasses.PredicateType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SD.LLBLGen.Pro.ORMSupportClasses.PredicateFinder"/> class.
+            </summary>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.PredicateFinder.#ctor(SD.LLBLGen.Pro.ORMSupportClasses.PredicateType,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SD.LLBLGen.Pro.ORMSupportClasses.PredicateFinder"/> class.
+            </summary>
+            <param name="predicateTypeToFind">The predicate type to find.</param>
+            <param name="traverseSetPredicateInnerSetElements">the flag to traverse the inner elements of a FieldCompareSetPredicate. (default is true). Set to false if you use the findings of this
+            crawler to adjust an outer query, as the inner elements of a fieldcompareset are a different scope.</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.PredicateFinder.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IPredicate)">
+            <summary>
+            Traverses the specified predicate and enclosed objects.
+            </summary>
+            <param name="objectToTraverse">The object to traverse.</param>
+        </member>
+        <member name="P:SD.LLBLGen.Pro.ORMSupportClasses.PredicateFinder.FoundPredicates">
+            <summary>
+            Gets the found predicates.
             </summary>
         </member>
         <member name="T:SD.LLBLGen.Pro.ORMSupportClasses.AggregateSetPredicateCallback">
@@ -13814,96 +13957,6 @@
             Class which finds all derived table definitions in the object to traverse, e.g. a relation collection.
             </summary>
         </member>
-        <member name="T:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser">
-            <summary>
-            Class which is used to traverse over an llblgen pro object, like a derivedtable, predicate expression etc. and access all inner objects, including
-            fields.
-            </summary>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser"/> class.
-            </summary>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(System.Object)">
-            <summary>
-            Traverses the specified object
-            </summary>
-            <param name="objectToTraverse">The object to traverse.</param>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.DerivedTableDefinition)">
-            <summary>
-            Traverses the specified derived table
-            </summary>
-            <param name="objectToTraverse">The object to traverse.</param>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFieldCore)">
-            <summary>
-            Traverses the specified field and related objects.
-            </summary>
-            <param name="field">The field.</param>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IPredicate)">
-            <summary>
-            Traverses the specified predicate and enclosed objects.
-            </summary>
-            <param name="objectToTraverse">The object to traverse.</param>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.TraversePredicate(SD.LLBLGen.Pro.ORMSupportClasses.IPredicate)">
-            <summary>
-            Traverses the predicate specified.
-            </summary>
-            <param name="objectToTraverse">The object to traverse.</param>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.TraversePredicateField(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFieldCore,System.String)">
-            <summary>
-            Traverses the predicate field.
-            </summary>
-            <param name="field">The field as found in the predicate.</param>
-            <param name="objectAlias">The object alias set in the predicate for the field .</param>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IRelationCollection)">
-            <summary>
-            Traverses the specified relationcollection and the relations in it.
-            </summary>
-            <param name="objectToTraverse">The object to traverse.</param>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IExpression)">
-            <summary>
-            Traverses the specified expression
-            </summary>
-            <param name="objectToTraverse">The object to traverse.</param>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.TraverseExpressionOperand(SD.LLBLGen.Pro.ORMSupportClasses.IExpressionElement)">
-            <summary>
-            Traverses the specified expression operand.
-            </summary>
-            <param name="operand">The operand to traverse.</param>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IScalarQueryExpression)">
-            <summary>
-            Traverses the specified scalar query expression and contained objects.
-            </summary>
-            <param name="objectToTraverse">The object to traverse.</param>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IDbFunctionCall)">
-            <summary>
-            Traverses the specified dbfunction call and contained objects.
-            </summary>
-            <param name="objectToTraverse">The object to traverse.</param>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression)">
-            <summary>
-            Traverses the specified sortexpression and contained objects.
-            </summary>
-            <param name="objectToTraverse">The object to traverse.</param>
-        </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.QueryApiObjectTraverser.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection)">
-            <summary>
-            Traverses the specified groupby collection and contained objects.
-            </summary>
-            <param name="objectToTraverse">The object to traverse.</param>
-        </member>
         <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.DerivedTableFinder.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:SD.LLBLGen.Pro.ORMSupportClasses.DerivedTableFinder"/> class.
@@ -16303,6 +16356,16 @@
             Creates a new ADO.NET data adapter.
             </summary>
             <returns>ready to use ADO.NET data-adapter</returns>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.DaoBase.PerformExecuteSingleRowRetrievalQuery(SD.LLBLGen.Pro.ORMSupportClasses.IRetrievalQuery,System.Data.CommandBehavior)">
+            <summary>
+            Performs the execute single row retrieval query action. This method simply calls Execute on the queryToExecute passed in. 
+            </summary>
+            <param name="queryToExecute">The query to execute.</param>
+            <param name="behavior">The commandbehavior to pass to Execute.</param>
+            <returns>live datareader created by the execute method</returns>
+            <remarks>Use this method to pass a different command behavior to queryToExecute.Execute(), which is necessary for ASE sybase for example, as the 
+            Sybase ASE provider has a critical bug in some versions where SingleRow doesn't work but SingleResult will.</remarks>
         </member>
         <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.DaoBase.GetMultiAsDataTableMergeManyToMany(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields,System.Data.DataTable,System.Int64,SD.LLBLGen.Pro.ORMSupportClasses.IPredicate,SD.LLBLGen.Pro.ORMSupportClasses.IRelationCollection,SD.LLBLGen.Pro.ORMSupportClasses.ITransaction)">
             <summary>
@@ -25585,6 +25648,13 @@
             Initializes a new instance of the <see cref="T:SD.LLBLGen.Pro.ORMSupportClasses.EntityNameFinder"/> class.
             </summary>
         </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.EntityNameFinder.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SD.LLBLGen.Pro.ORMSupportClasses.EntityNameFinder"/> class.
+            </summary>
+            <param name="traverseSetPredicateInnerSetElements">the flag to traverse the inner elements of a FieldCompareSetPredicate. (default is true). Set to false if you use the findings of this
+            crawler to adjust an outer query, as the inner elements of a fieldcompareset are a different scope.</param>
+        </member>
         <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.EntityNameFinder.Traverse(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFieldCore)">
             <summary>
             Finds all containingObjectNames and ActualContainingObjectNames of all fields in the object passed in and enclosed fields in enclosed objects.
@@ -27081,6 +27151,14 @@
             FK side. Required for determining which alias belongs to which entity.</param>
             <param name="mappedFieldName">Name of the mapped field in the start entity onto this relation.</param>
             <remarks>Adapter specific</remarks>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.EntityRelation.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
         </member>
         <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.EntityRelation.AddEntityFieldPair``1(``0,``0)">
             <summary>
@@ -32415,7 +32493,7 @@
             <returns>the PK object related to the FK object, located in the pkSideHashes. if not found, null is returned.</returns>
             <remarks>Used in merging during prefetch path fetches</remarks>
         </member>
-        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.PersistenceCore.FindPkObject(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.List{SD.LLBLGen.Pro.ORMSupportClasses.IEntityCore}},System.Int32,System.Collections.IList,System.Int32)">
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.PersistenceCore.FindPkObject(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.List{SD.LLBLGen.Pro.ORMSupportClasses.IEntityCore}},System.Int32,System.Collections.IList,System.Collections.IList)">
             <summary>
             Finds the parent object related to the child object which hash is passed in. The routine tries to find first a match using the hash, and then tries to
             locate the real entity, if there are more than 1 element for a given hashvalue.
@@ -32423,7 +32501,7 @@
             <param name="parentSideHashes">The parent side hashes.</param>
             <param name="childHash">The child hash.</param>
             <param name="childSideFields">The child side fields. This can be a set of FK fields, or a set of PK fields, depending on the usage of the routine.</param>
-            <param name="numberOfPkFields">The number of pk fields.</param>
+            <param name="pkSideFields">The pk side fields.</param>
             <returns>
             the parent object related to the child object, located in the parentSideHashes. If not found, null is returned.
             </returns>
@@ -32643,6 +32721,14 @@
             <param name="relations">The relations.</param>
             <param name="infoProvider">The info provider.</param>
             <param name="forEntityName">Name of for entity.</param>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.PersistenceCore.AddAdditionalInheritanceRelationsToRelationCollectionBasedOnFilter(SD.LLBLGen.Pro.ORMSupportClasses.IRelationCollection,SD.LLBLGen.Pro.ORMSupportClasses.IPredicateExpression,SD.LLBLGen.Pro.ORMSupportClasses.IInheritanceInfoProvider)">
+            <summary>
+            Adds additional inheritance hierarchy relations if necessary for filters which target entities which aren't in the pack.
+            </summary>
+            <param name="relations">The relations.</param>
+            <param name="filter">The filter.</param>
+            <param name="infoProvider">The info provider.</param>
         </member>
         <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.PersistenceCore.CleanupDataReader(System.Data.IDataReader,SD.LLBLGen.Pro.ORMSupportClasses.IQuery)">
             <summary>
@@ -35646,6 +35732,13 @@
             <returns>
             true if the predicate interpretation resolves to true, otherwise false.
             </returns>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.FieldBetweenPredicate.CreateParameter(System.Object)">
+            <summary>
+            Creates the parameter.
+            </summary>
+            <param name="value">The parameter value.</param>
+            <returns>ready to use parameter</returns>
         </member>
         <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.FieldBetweenPredicate.InitClass(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFieldCore,SD.LLBLGen.Pro.ORMSupportClasses.IFieldPersistenceInfo,System.Object,System.Object,System.Boolean,System.Boolean,System.String)">
             <summary>
@@ -40338,6 +40431,13 @@
             <returns>the string to use in the FROM clause</returns>
             <remarks>After this calls the parameters produced are in the Parameters collection.</remarks>
         </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.RelationCollection.MarkAllFieldsReferencingJoinedDerivedTablesAsSuch">
+            <summary>
+            Marks all fields which refer to a joined part which is actually a derived table as a derived table referencing field. This is then later on
+            used to correct names, if necessary. Only required for joins between a derived table and a normal relation which is implicit (i.e. a dynamic relation
+            with just a derived table is in the collection together with a normal relation where 1 side is to be replaced with the derived table
+            </summary>
+        </member>
         <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.RelationCollection.PreprocessRelations">
             <summary>
             Preprocesses the relations in this relationcollection
@@ -40356,6 +40456,16 @@
             </summary>
             <param name="enable">if set to true, enable artificial aliasing, otherwise false (default).</param>
             <remarks>Artificial aliasing is disabled by default</remarks>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.RelationCollection.RemoveHierarchyRelations">
+            <summary>
+            Removes the hierarchy relations from this relationcollection. During query construction, hierarchy relations are added to this collection
+            to make the actual relations reaching all the tables / views targeted. In prefetch paths, these relationcollections are passed on.
+            Normally this isn't a problem, as duplicate relations are filtered out, but in an edge case with m:n with relation to the supertype, it
+            can be this will cause a problem. To avoid this problem, the hierarchy relations have to be filtered out, as they're re-added anyway. 
+            Keeping them in this list, will cause them to crash the query processor as these 'duplicated' relations will be dangling at the end of the set
+            but aren't necessarily connected to the full set of relations. 
+            </summary>
         </member>
         <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.RelationCollection.PrepareJoinableFragments(System.Int32@,System.Text.StringBuilder,SD.LLBLGen.Pro.ORMSupportClasses.IEntityRelation,SD.LLBLGen.Pro.ORMSupportClasses.IDynamicRelation,System.Boolean,System.Boolean@,System.String@,System.String@,System.String@,System.String@,System.String@,System.String@)">
             <summary>
@@ -43129,6 +43239,12 @@
             <param name="savedFieldSetsNode">The saved field sets node.</param>
             <param name="savedFields">The saved fields.</param>
             <remarks>Selfservicing/noncompact25 specific</remarks>
+        </member>
+        <member name="M:SD.LLBLGen.Pro.ORMSupportClasses.XmlHelper.ResetFieldsForDeserialization(System.Collections.IList)">
+            <summary>
+            Resets the fields for deserialization. Resetting means that CurrentValue/DbValue/IsChanged/IsNull are reset to the default values.
+            </summary>
+            <param name="fields">The fields.</param>
         </member>
     </members>
 </doc>

@@ -30,7 +30,11 @@ namespace Kalibrasi.form
 
         private void button10_Click(object sender, EventArgs e)
         {
-            this.Close();             
+            foreach (Control ctrl in this.MdiParent.Controls)
+            {
+                ctrl.Enabled = true;
+            }
+            this.Close();                        
         }
 
         private void frmAlat_Load(object sender, EventArgs e)

@@ -30,9 +30,9 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvResult = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.cmdExit = new System.Windows.Forms.Button();
             this.kalibrasi1 = new Kalibrasi.kalibrasi();
-            this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -67,9 +67,19 @@
             this.dgvResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResult.Location = new System.Drawing.Point(0, 0);
             this.dgvResult.Name = "dgvResult";
+            this.dgvResult.ReadOnly = true;
             this.dgvResult.Size = new System.Drawing.Size(592, 494);
             this.dgvResult.TabIndex = 0;
             this.dgvResult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvResult_CellClick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(114, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(371, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Please select the record that you want to pick and then click the EXIT button";
             // 
             // cmdExit
             // 
@@ -85,15 +95,6 @@
             // 
             this.kalibrasi1.DataSetName = "kalibrasi";
             this.kalibrasi1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(114, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(371, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Please select the record that you want to pick and then click the EXIT button";
             // 
             // frmResultList
             // 

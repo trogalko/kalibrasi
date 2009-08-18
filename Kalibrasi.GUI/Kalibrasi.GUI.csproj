@@ -32,16 +32,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ChilkatDotNet2, Version=9.0.0.0, Culture=neutral, PublicKeyToken=eb5fc1fc52ef09bd, processorArchitecture=x86">
+    <Reference Include="ChilkatDotNet2, Version=9.0.1.0, Culture=neutral, PublicKeyToken=eb5fc1fc52ef09bd, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>U:\Program Files\Chilkat Software Inc\Chilkat.NET-v2.0-Framework\ChilkatDotNet2.dll</HintPath>
+      <HintPath>bin\Release\ChilkatDotNet2.dll</HintPath>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="SD.LLBLGen.Pro.DQE.Access.NET20, Version=2.6.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL" />
     <Reference Include="SD.LLBLGen.Pro.ORMSupportClasses.NET20, Version=2.6.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\WINDOWS\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -51,6 +64,18 @@
     </Compile>
     <Compile Include="form\frmAlat.Designer.cs">
       <DependentUpon>frmAlat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\frmChgPasswd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\frmChgPasswd.Designer.cs">
+      <DependentUpon>frmChgPasswd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\frmDataJadwal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\frmDataJadwal.Designer.cs">
+      <DependentUpon>frmDataJadwal.cs</DependentUpon>
     </Compile>
     <Compile Include="form\frmDepartemen.cs">
       <SubType>Form</SubType>
@@ -64,6 +89,18 @@
     <Compile Include="form\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="form\frmLokasi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\frmLokasi.Designer.cs">
+      <DependentUpon>frmLokasi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\frmPIC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\frmPIC.Designer.cs">
+      <DependentUpon>frmPIC.cs</DependentUpon>
+    </Compile>
     <Compile Include="form\frmResultList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +112,12 @@
     </Compile>
     <Compile Include="form\frmStatusBar.Designer.cs">
       <DependentUpon>frmStatusBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\frmTambahUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\frmTambahUser.Designer.cs">
+      <DependentUpon>frmTambahUser.cs</DependentUpon>
     </Compile>
     <Compile Include="global variable\global.cs" />
     <Compile Include="kalibrasi.Designer.cs">
@@ -94,12 +137,28 @@
       <DependentUpon>frmAlat.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="form\frmChgPasswd.resx">
+      <DependentUpon>frmChgPasswd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\frmDataJadwal.resx">
+      <DependentUpon>frmDataJadwal.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="form\frmDepartemen.resx">
       <DependentUpon>frmDepartemen.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="form\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\frmLokasi.resx">
+      <DependentUpon>frmLokasi.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\frmPIC.resx">
+      <DependentUpon>frmPIC.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="form\frmResultList.resx">
@@ -110,6 +169,10 @@
       <DependentUpon>frmStatusBar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="form\frmTambahUser.resx">
+      <DependentUpon>frmTambahUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="mdiKalibrasi.resx">
       <DependentUpon>mdiKalibrasi.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -118,6 +181,22 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="report\frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="report\rptDaftarInduk.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptDaftarInduk.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="report\rptJadwalKalibrasi.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptJadwalKalibrasi.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="report\rptLengkapJadwalKalibrasi.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptLengkapJadwalKalibrasi.cs</LastGenOutput>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -133,6 +212,30 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="report\frmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="report\frmReport.Designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="report\rptDaftarInduk.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptDaftarInduk.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="report\rptJadwalKalibrasi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptJadwalKalibrasi.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="report\rptLengkapJadwalKalibrasi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptLengkapJadwalKalibrasi.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +257,9 @@
       <DependentUpon>kalibrasi.xsd</DependentUpon>
     </None>
     <None Include="Resources\Logo Novell.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
