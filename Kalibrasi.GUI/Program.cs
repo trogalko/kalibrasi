@@ -9,6 +9,7 @@ namespace Kalibrasi
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+	/// done
         [STAThread]
         static void Main()
         {
